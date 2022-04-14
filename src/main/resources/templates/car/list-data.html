@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{layout}">
+<head>
+	<title  th:text="${title}">Insert title here</title>
+</head>
+<body>
+	<th:block layout:fragment="content">
+		<h1 th:text="${title}">Car List</h1>
+		
+		<div th:if="${cars} != null">
+			<table class="datatable" id="carList">
+				<tr class="column-header">
+					<td>ID</td>
+					<td>Brand ID</td>
+					<td>Model</td>
+					<td>Year</td>
+				</tr>
+	
+				<th:block th:each="car: ${cars}">
+					<tr>
+						<td th:text="${car.id}">ID</td>
+						<td th:text="${car.brand}">brand</td>
+						<td th:text="${car.model}">model</td>
+						<td th:text="${car.productionDateFormat}">Year</td>
+					</tr>
+				</th:block>
+				
+			
+			</table>
+		</div>
+	</th:block>
+</body>
+
+</html>
