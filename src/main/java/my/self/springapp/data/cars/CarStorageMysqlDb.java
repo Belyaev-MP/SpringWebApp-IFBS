@@ -39,7 +39,7 @@ public class CarStorageMysqlDb implements CarStorage {
         String sqlPattern = null;
 
         if (pattern != null) {
-            sqlQuery.append(" WHERE car_model.name LIKE ?");
+            sqlQuery.append(" WHERE car_model.model LIKE ?");
             sqlPattern = "%" + pattern + "%";
             carList = jdbcTemplate.query(sqlQuery.toString(), new CarRowMapper(), sqlPattern);
         } else {
