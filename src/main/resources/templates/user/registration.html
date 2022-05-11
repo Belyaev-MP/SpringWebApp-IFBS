@@ -11,27 +11,22 @@
 	<th:block layout:fragment="content">
 		<h1 th:text="${'User Registration'}">User Login Page</h1>
 
-		<form th:action="@{/user/registration}" method="post" th:object="${userForm}">
+		<form th:action="@{/user/registration}" th:method="post">
 			<div>
 				<label>Email: </label>
-				<input type="text" th:field="*{email}">&nbsp;<span th:errors="*{email}"></span>
+				<input type="text" name="email">
 			</div>
 
-			<div>
-				<label>Name: </label>
-				<input type="text" th:field="*{name}">&nbsp;<span th:errors="*{name}"></span>
-			</div>
+            <div>
+                <label>Name: </label>
+                <input type="text" name="name">
+            </div>
 
 			<div>
 				<label>Password: </label>
-				<input type="password" th:field="*{password}">&nbsp;<span th:errors="*{password}"></span>
+				<input type="password" name="password">
 			</div>
 
-			<div>
-				<label>Password confirm: </label>
-				<input type="password" th:field="*{passwordConfim}">&nbsp;<span th:errors="*{passwordConfim}"></span>
-			</div>
-			
 			<div class="form-group">
 				<input type="submit" name="login-submit" id="login-submit"
 					class="stdBtn" value="Log In">
