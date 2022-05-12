@@ -1,4 +1,4 @@
-package my.self.springapp.web.form;
+package my.self.springapp.web.form.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

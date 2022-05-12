@@ -6,7 +6,7 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import my.self.springapp.domain.model.User;
-import my.self.springapp.web.form.UserForm;
+import my.self.springapp.web.form.user.UserForm;
 
 public interface UserService {
 

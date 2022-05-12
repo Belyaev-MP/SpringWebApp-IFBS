@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 import my.self.springapp.data.user.UserRepository;
 import my.self.springapp.domain.model.Role;
 import my.self.springapp.domain.model.User;
-import my.self.springapp.web.form.UserForm;
+import my.self.springapp.web.form.user.UserForm;
 
 @Service
 public class UserServiceDomain implements UserService {

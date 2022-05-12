@@ -1,4 +1,4 @@
-package my.self.springapp.web.form;
+package my.self.springapp.web.form.user;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;

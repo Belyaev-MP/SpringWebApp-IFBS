@@ -75,15 +75,14 @@ public class CarStorageMysqlDb implements CarStorage {
         String rowCountSql = "SELECT count(*) FROM car_model";
         int total = jdbcTemplate.queryForObject(rowCountSql, Integer.class);
 
-        StringBuilder sqlQuery = new StringBuilder("SELECT car_model.id, car_brand_id, car_model.name, "
-                + "car_model.productionDate, car_model.price, "
-                + "car_brand.name as brandName, car_brand.url "
-                + " from car_model " + " left join car_brand on car_model.car_brand_id = car_brand.id ");
+        StringBuilder sqlQuery = new StringBuilder("SELECT car_model.id, car_brand_id, car_model.model, "
+                + "car_model.production, car_brand.name as brandName from car_model "
+                + "left join car_brand on car_model.car_brand_id = car_brand.id ");
 
         if (!pageable.getSort().isEmpty()) {
             Order order = pageable.getSort().getOrderFor("name");
             if(order != null) {
-                sqlQuery.append(" ORDER BY name " + order.getDirection() );
+                sqlQuery.append(" ORDER BY model " + order.getDirection() );
             }
         } else {
             sqlQuery.append(" ORDER BY id ");
