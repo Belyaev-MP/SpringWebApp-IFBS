@@ -5,15 +5,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import my.self.springapp.domain.TestService;
 import my.self.springapp.domain.mail.MailClient;
+import my.self.springapp.web.spring.UserDetailsImpl;
 
 @RestController
 @RequestMapping("/test")
@@ -63,6 +69,26 @@ public class TestController {
     public String sendMail() {
     	mail.sendTestEmail("john.dow@google.com");
     	return "Ok";
+    }
+    
+    
+    @GetMapping("/test-auth")
+    public String testAuth(@AuthenticationPrincipal UserDetailsImpl userDetails) {
+    	if(userDetails != null) {
+    		return "UserId: " + userDetails.getId();
+    	}
+    	
+    	return "User: ";
+    }
+    
+    @GetMapping("/test-model")
+    public String testModel(Model model) {
+    	return "Id: " + model.getAttribute("userId");
+    }
+    
+    @ModelAttribute(name = "userId")
+    public Long getCurrentUserId(@AuthenticationPrincipal UserDetailsImpl userDetails) {
+    	return userDetails != null ? userDetails.getId() : 0;
     }
     
 }

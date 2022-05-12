@@ -62,4 +62,8 @@ public class UserDetailsImpl implements UserDetails {
         return user.isEnabled();
     }
 
+    public Long getId() {
+    	return user.getId();
+    }
+    
 }
