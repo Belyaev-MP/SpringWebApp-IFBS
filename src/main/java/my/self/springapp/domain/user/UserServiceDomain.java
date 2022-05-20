@@ -59,4 +59,12 @@ public class UserServiceDomain implements UserService {
 		
 		userRepository.save(u);
 	}
+
+	@Override
+	public User findById(Long userId) {
+		return userRepository.findById(userId).get();
+	}
+	
+	
+	
 }

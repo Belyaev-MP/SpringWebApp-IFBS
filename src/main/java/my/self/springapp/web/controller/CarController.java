@@ -69,7 +69,7 @@ public class CarController {
     public String list(Model model, @PathVariable Optional<Integer> pageId) {
         int page = pageId.isPresent() ? pageId.get() : 0;
 
-        Page<CarModel> cars = carService.findAll(PageRequest.of(page, 30, Sort.by("name").ascending()));
+        Page<CarModel> cars = carService.findAll(PageRequest.of(page, 4, Sort.by("name").ascending()));
 
         model.addAttribute("cars", cars);
 

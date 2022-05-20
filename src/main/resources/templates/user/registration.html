@@ -12,6 +12,7 @@
 		<h1 th:text="${'User Registration'}">User Login Page</h1>
 
 		<form th:action="@{/user/registration}" th:method="post" th:object="${userForm}" autocomplete="off">
+			<input type="hidden" th:field="*{id}">
 			<div>
 				<label>Email: </label>
 				<input type="text" th:field="*{email}" autocomplete="false">

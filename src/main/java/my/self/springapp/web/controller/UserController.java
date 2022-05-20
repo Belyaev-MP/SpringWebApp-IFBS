@@ -2,6 +2,7 @@ package my.self.springapp.web.controller;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,8 +11,10 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import my.self.springapp.domain.model.User;
 import my.self.springapp.domain.user.UserService;
 import my.self.springapp.web.form.user.UserForm;
 import my.self.springapp.web.form.user.UserFormValidator;
@@ -41,8 +44,15 @@ public class UserController {
 
 
     @GetMapping(path = {"/user/registration/{userId}", "/user/registration"})
-    public String userRegistration(Model model) {
-        model.addAttribute("userForm", new UserForm());
+    public String userRegistration(Model model, @PathVariable(required = false) Long userId) {
+    	
+    	UserForm form = new UserForm();
+    	if (userId != null && userId > 0) {
+    		User user = userService.findById(userId);
+    		BeanUtils.copyProperties(user, form, "password", "token");
+    	}
+    	
+        model.addAttribute("userForm", form);
         return "/user/registration";
     }
 

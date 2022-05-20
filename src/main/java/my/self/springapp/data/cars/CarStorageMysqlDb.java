@@ -80,7 +80,7 @@ public class CarStorageMysqlDb implements CarStorage {
                 + "left join car_brand on car_model.car_brand_id = car_brand.id ");
 
         if (!pageable.getSort().isEmpty()) {
-            Order order = pageable.getSort().getOrderFor("name");
+            Order order = pageable.getSort().getOrderFor("model");
             if(order != null) {
                 sqlQuery.append(" ORDER BY model " + order.getDirection() );
             }
