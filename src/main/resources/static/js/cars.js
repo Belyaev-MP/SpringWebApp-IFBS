@@ -30,8 +30,7 @@ function ajaxFilterCallback() {
 		if (data.length > 0) {
 			try {
 				let dataJson = JSON.parse(data);
-				console.log(dataJson);
-				// TODO: fill table with data
+                 fillTable(dataJson);
 			} catch(e) {
 				
 			} 
@@ -40,4 +39,33 @@ function ajaxFilterCallback() {
 	} else {
 		alert('Ajax error appear');
 	}
+}
+
+function fillTable(data) {
+    document.querySelectorAll('#carList tr').forEach(function(el,i){
+            if (!el.classList.contains('column-header')) {
+                    el.remove();
+            }
+    });
+
+    let table = document.getElementById('carList');
+
+    data.forEach(function(el, i){
+            let tr = document.createElement('tr');
+
+
+            tr.appendChild(createCell(el.brand.name));
+            tr.appendChild(createCell(el.model));
+            tr.appendChild(createCell(el.productionDateFormat));
+
+            table.appendChild(tr);
+    });
+
+}
+
+
+function createCell(name) {
+    let td = document.createElement('td');
+    td.innerText = name;
+    return td;
 }
